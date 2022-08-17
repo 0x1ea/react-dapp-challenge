@@ -1,0 +1,48 @@
+.mint_header {
+  z-index: 5;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transform: translateY(0);
+  transition: transform 0.6s ease;
+}
+
+.mint_nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 992px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.mint_nav_link {
+  color: white;
+  text-decoration: none;
+}
+
+.mint_logo {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  line-height: 80px;
+  width: 220px;
+  cursor: pointer;
+}
+
+.nav_menu {
+  display: flex;
+  list-style: none;
+}
+.connect_button {
+  width: 220px;
+  padding: 10px;
+}
+.connect_button div {
+  justify-content: center;
+}
