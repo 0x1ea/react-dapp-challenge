@@ -44,7 +44,6 @@ const MainMint = () => {
     DAI.refetch()
   }, [chain, isConnected, events, mintAmount, txExecuted])
 
-  console.log("algo")
   return (
     <div className="bg-zinc-900  max-w-screen-sm mx-auto rounded-xl">
       <div className="px-4 h-auto">

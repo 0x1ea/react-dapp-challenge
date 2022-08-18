@@ -24,15 +24,11 @@ const MintButton = ({ mintAmount, setTxExecuted }) => {
 
   const waitDAI = useWaitForTransaction({
     hash: DAI.data?.hash,
-    onSuccess(data) {
-      console.log("Success", data)
-    },
   })
 
   const waitCDAI = useWaitForTransaction({
     hash: cDAI.data?.hash,
     onSuccess(data) {
-      console.log("Success", data)
       setTxExecuted(true)
     },
   })
@@ -48,7 +44,6 @@ const MintButton = ({ mintAmount, setTxExecuted }) => {
     allowance.refetch()
   }, [allowance])
 
-  console.log("algo2")
   return (
     <>
       <div
