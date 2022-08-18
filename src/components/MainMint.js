@@ -8,6 +8,7 @@ import MintButton from "../components/MintButton"
 const MainMint = () => {
   const [showButton, setShowButton] = useState(false)
   const [mintAmount, setMintAmount] = useState()
+  const [txExecuted, setTxExecuted] = useState(false)
   const [events, setEvents] = useState()
   const { isConnected, address } = useAccount()
   const { chain } = useNetwork()
@@ -38,7 +39,10 @@ const MainMint = () => {
     memoizedValue.then((res) => {
       setEvents(res.myEvents)
     })
-  }, [chain, isConnected, events, mintAmount])
+
+    cDAI.refetch()
+    DAI.refetch()
+  }, [chain, isConnected, events, mintAmount, txExecuted])
 
   console.log("algo")
   return (
@@ -71,7 +75,10 @@ const MainMint = () => {
               }}
             />
             {mintAmount > 0 ? (
-              <MintButton mintAmount={ethers.utils.parseEther(mintAmount.toString())} />
+              <MintButton
+                mintAmount={ethers.utils.parseEther(mintAmount.toString())}
+                setTxExecuted={setTxExecuted}
+              />
             ) : (
               <button className="bg-[#ff494a] flex z-10 rounded-lg cursor-pointer font-sans text-lg justify-center place-items-center shadow-md hover:scale-x-105 font-bold h-16 mt-6 px-4 md:my-full">
                 Type some DAI to Deposit

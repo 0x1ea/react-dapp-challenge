@@ -5,7 +5,7 @@ import { useWaitForTransaction } from "wagmi"
 import { useAccount } from "wagmi"
 import { useContractRead } from "wagmi"
 
-const MintButton = ({ mintAmount }) => {
+const MintButton = ({ mintAmount, setTxExecuted }) => {
   const { address } = useAccount()
 
   const cDAI = useContractWrite({
@@ -24,10 +24,17 @@ const MintButton = ({ mintAmount }) => {
 
   const waitDAI = useWaitForTransaction({
     hash: DAI.data?.hash,
+    onSuccess(data) {
+      console.log("Success", data)
+    },
   })
 
   const waitCDAI = useWaitForTransaction({
     hash: cDAI.data?.hash,
+    onSuccess(data) {
+      console.log("Success", data)
+      setTxExecuted(true)
+    },
   })
 
   const allowance = useContractRead({
@@ -62,7 +69,6 @@ const MintButton = ({ mintAmount }) => {
         {DAI.status === "idle" && allowance?.data?.lt(mintAmount) && "Approve DAI"}
 
         {DAI.status === "loading" && allowance?.data?.lt(mintAmount) && "Wating approval..."}
-        {DAI.status === "error" && allowance?.data?.lt(mintAmount) && "Something went wrong..."}
         {waitDAI.status === "loading" &&
           allowance?.data?.lt(mintAmount) &&
           "Waiting confirmation..."}

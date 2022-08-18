@@ -30,6 +30,5 @@ export async function getEvents(contractInterface, contractAddress, address) {
     console.log(error)
   }
 
-  myEvents = myEvents.reverse()
   return { myEvents }
 }
