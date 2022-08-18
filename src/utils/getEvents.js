@@ -1,6 +1,13 @@
 import Web3 from "web3"
 import { timeConverter } from "./timeConverter"
 
+/**
+ *
+ * @param {string} contractInterface
+ * @param {string} contractAddress
+ * @param {string} address
+ * @returns
+ */
 export async function getEvents(contractInterface, contractAddress, address) {
   const provider = `https://kovan.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
   const web3 = new Web3(provider)
